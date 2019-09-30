@@ -98,3 +98,53 @@ main{
         height: 11rem;
     }
 }
+
+@media (max-width:700px){
+    main{
+        flex-direction: column;
+    }
+
+    .categories{
+        width: 100%;
+        display: flex;
+        height: 3rem;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0;
+    }
+
+    .sub{
+        display: none;
+        position: absolute;
+        padding: 0;
+        background-color: rgb(190, 200, 70);
+        color: white;
+        padding: 0;
+    }
+
+    .categories p:hover{
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .categories>li:hover .sub{
+        display: block;
+    }
+
+    .categories ul>li{
+        padding: 0.5rem 1rem;
+    }
+
+    .categories ul>li:hover{
+        text-decoration: underline;
+        cursor: pointer;
+        color: rgb(190, 200, 70);
+        background-color: white;
+    }
+    
+    #results{
+        width: 100%;
+    }
+
+
+}
