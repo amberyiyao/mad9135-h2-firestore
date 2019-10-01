@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <header>Amber's Shop</header>
+    <header>Amber's Snack</header>
     <main>
         <ul class="categories">
             <li>
@@ -39,48 +39,27 @@
             </li>
         </ul>
         <section id="results">
-            <div class="list">
-                <img src="./img/coffee.jfif">
-                <div>
-                    <p>Title</p>
-                    <p>This is a very good coffee, enjoy it!</p>
-                    <p>$12.00</p>
-                </div>
-            </div>
-            <div class="list">
-                <img src="./img/coffee.jfif">
-                <div>
-                    <p>Title</p>
-                    <p>This is a very good coffee, enjoy it!</p>
-                    <p>$12.00</p>
-                </div>
-            </div>
-            <div class="list">
-                <img src="./img/coffee.jfif">
-                <div>
-                    <p>Title</p>
-                    <p>This is a very good coffee, enjoy it!</p>
-                    <p>$12.00</p>
-                </div>
-            </div>
-            <div class="list">
-                <img src="./img/coffee.jfif">
-                <div>
-                    <p>Title</p>
-                    <p>This is a very good coffee, enjoy it!</p>
-                    <p>$12.00</p>
-                </div>
-            </div>
-            <div class="list">
-                    <img src="./img/coffee.jfif">
-                    <div>
-                        <p>Title</p>
-                        <p>This is a very good coffee, enjoy it!</p>
-                        <p>$12.00</p>
-                    </div>
-                </div>
         </section>
     </main>
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB2qVego5-l6bJVLVhNaFVhlWP0jf8uCtU",
+            authDomain: "shop-a47fd.firebaseapp.com",
+            databaseURL: "https://shop-a47fd.firebaseio.com",
+            projectId: "shop-a47fd",
+            storageBucket: "shop-a47fd.appspot.com",
+            messagingSenderId: "837592088004",
+            appId: "1:837592088004:web:6833498c22d71b42d8f891",
+            measurementId: "G-JPB2M66RL7"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <!-- <script src="./js/initialize.js"></script> -->
     <script src="./js/main.js"></script>
 </body>
 
