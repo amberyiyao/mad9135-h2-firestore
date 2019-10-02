@@ -6,7 +6,7 @@ const app = {
     addListeners() {
         document.querySelector('#editWindow .fa-check-circle').addEventListener('click', () => {
             if(document.querySelector(`#editWindow input`).value || document.querySelector(`#editWindow input`).value.trim() != ""){
-                alert('It can not be emply')
+                alert('It can not be empty')
                 document.querySelector(`#editWindow input`).focus()
                 return
             }
@@ -51,7 +51,7 @@ const app = {
             checkI.className = "far fa-check-circle"
             checkI.addEventListener('click',()=>{
                 if(document.querySelector(`#addNewCat input`).value || document.querySelector(`#addNewCat input`).value.trim() != ""){
-                    alert('It can not be emply')
+                    alert('It can not be empty')
                     document.querySelector(`#addNewCat input`).focus()
                     return
                 }
@@ -131,7 +131,7 @@ const app = {
         checkI.className = "far fa-check-circle"
         checkI.addEventListener('click',()=>{
             if(document.querySelector(`#add${category} input`).value || document.querySelector(`#add${category} input`).value.trim() != ""){
-                alert('It can not be emply')
+                alert('It can not be empty')
                 document.querySelector(`#add${category} input`).focus()
                 return
             }
