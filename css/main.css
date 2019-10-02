@@ -151,3 +151,15 @@ span:hover{
 .hide{
     display: none !important;
 }
+
+
+@media(max-width:900px){
+    .sub{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+@media(max-width:600px){
+    .sub{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

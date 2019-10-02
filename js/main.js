@@ -18,6 +18,7 @@ const app = {
         document.querySelector('#editWindow .fa-times-circle').addEventListener('click', () => {
             document.getElementById('editWindow').classList.add('hide')
             document.getElementById('addNewCat').classList.remove('hide')
+            document.removeEventListener("keypress", app.afterPress);
         });
     },
     addPress() {
@@ -85,6 +86,7 @@ const app = {
             closeI.addEventListener('click', () => {
                 document.getElementById('addNewCat').classList.add('hide')
                 span.classList.remove('hide')
+                document.removeEventListener("keypress", app.afterPress);
             })
 
             addCat.appendChild(input)
@@ -168,6 +170,7 @@ const app = {
         closeI.addEventListener('click', () => {
             document.getElementById(`add${category}`).classList.add('hide')
             addItem.classList.remove('hide')
+            document.removeEventListener("keypress", app.afterPress);
         })
 
         addDiv.appendChild(input)
