@@ -32,10 +32,11 @@ main{
 .categories{
     list-style: none;
     margin: 0 auto;
-    height: calc(100% - 1.5rem);
+    height: calc(100% - 5.5rem);
     padding: 1.5rem 0 0 1.5rem;
     overflow: scroll;
     width: 90%;
+    padding: 2rem 0;
 }
 
 .categories form{

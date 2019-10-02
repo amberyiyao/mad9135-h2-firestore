@@ -5,7 +5,7 @@ const app = {
     },
     addListeners() {
         document.querySelector('#editWindow .fa-check-circle').addEventListener('click', () => {
-            if(document.querySelector(`#editWindow input`).value || document.querySelector(`#editWindow input`).value.trim() != ""){
+            if(document.querySelector(`#editWindow input`).value == "" || document.querySelector(`#editWindow input`).value.trim() == ""){
                 alert('It can not be empty')
                 document.querySelector(`#editWindow input`).focus()
                 return
@@ -50,7 +50,7 @@ const app = {
             let checkI = document.createElement('i')
             checkI.className = "far fa-check-circle"
             checkI.addEventListener('click',()=>{
-                if(document.querySelector(`#addNewCat input`).value || document.querySelector(`#addNewCat input`).value.trim() != ""){
+                if(document.querySelector(`#addNewCat input`).value  == ""  || document.querySelector(`#addNewCat input`).value.trim() == ""){
                     alert('It can not be empty')
                     document.querySelector(`#addNewCat input`).focus()
                     return
@@ -130,7 +130,8 @@ const app = {
         let checkI = document.createElement('i')
         checkI.className = "far fa-check-circle"
         checkI.addEventListener('click',()=>{
-            if(document.querySelector(`#add${category} input`).value || document.querySelector(`#add${category} input`).value.trim() != ""){
+            console.log(document.querySelector(`#add${category} input`).value)
+            if(document.querySelector(`#add${category} input`).value == "" || document.querySelector(`#add${category} input`).value.trim() == ""){
                 alert('It can not be empty')
                 document.querySelector(`#add${category} input`).focus()
                 return
@@ -164,11 +165,11 @@ const app = {
         } else if (ops == "addItem"){
             app.db.collection("snack").doc(id).get().then((doc)=>{
                 app.db.collection("snack").doc(id).set({
-                    items: [document.querySelector(`#add${id} input`).value,...doc.data().items]
+                    items: [...doc.data().items, document.querySelector(`#add${id} input`).value]
                 })
             })
             document.getElementById(`add${id}`).classList.add('hide')
-            document.querySelector(`.id .fa-plus-square`).classList.remove('hide')
+            document.querySelector(`.${id} .fa-plus-square`).classList.remove('hide')
         } else if (ops == "addCat"){
             app.db.collection("snack").doc(id).set({items:[]})
         }
