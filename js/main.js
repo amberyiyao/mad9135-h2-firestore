@@ -5,7 +5,7 @@ const app = {
     },
     addListeners() {
         document.querySelector('#editWindow .fa-check-circle').addEventListener('click', () => {
-            if(document.querySelector(`#editWindow input`).value == "" || document.querySelector(`#editWindow input`).value.trim() == ""){
+            if (document.querySelector(`#editWindow input`).value == "" || document.querySelector(`#editWindow input`).value.trim() == "") {
                 alert('It can not be empty')
                 document.querySelector(`#editWindow input`).focus()
                 return
@@ -20,6 +20,24 @@ const app = {
             document.getElementById('addNewCat').classList.remove('hide')
         });
     },
+    addPress() {
+        document.addEventListener("keypress", app.afterPress);
+    },
+    i: 0,
+    cat: "",
+    afterPress(e) {
+        if (e.keyCode == 13) {
+            e.preventDefault()
+            if (app.i == 1) {
+                document.querySelector('#editWindow .fa-check-circle').dispatchEvent(new MouseEvent('click'));
+            } else if (app.i == 2) {
+                document.querySelector(`#add${app.cat} .fa-check-circle`).dispatchEvent(new MouseEvent('click'));
+            } else if (app.i == 3) {
+                document.querySelector(`#addNewCat .fa-check-circle`).dispatchEvent(new MouseEvent('click'));
+            }
+            document.removeEventListener("keypress", app.afterPress);
+        }
+    },
     db: firebase.firestore(),
     getInfor() {
         app.db.collection("snack").onSnapshot(res => {
@@ -31,9 +49,11 @@ const app = {
             })
 
             let span = document.createElement('span')
-            span.addEventListener('click',()=>{
+            span.addEventListener('click', () => {
                 document.getElementById('addNewCat').classList.remove('hide')
                 span.classList.add('hide')
+                app.i = 3
+                app.addPress()
             })
 
             let addItem = document.createElement('i')
@@ -44,13 +64,13 @@ const app = {
             span.appendChild(spanSub)
             let addCat = document.createElement('form')
             addCat.className = "hide"
-            addCat.setAttribute('id',"addNewCat")
+            addCat.setAttribute('id', "addNewCat")
             let input = document.createElement('input')
             input.setAttribute("type", "text")
             let checkI = document.createElement('i')
             checkI.className = "far fa-check-circle"
-            checkI.addEventListener('click',()=>{
-                if(document.querySelector(`#addNewCat input`).value  == ""  || document.querySelector(`#addNewCat input`).value.trim() == ""){
+            checkI.addEventListener('click', () => {
+                if (document.querySelector(`#addNewCat input`).value == "" || document.querySelector(`#addNewCat input`).value.trim() == "") {
                     alert('It can not be empty')
                     document.querySelector(`#addNewCat input`).focus()
                     return
@@ -62,7 +82,7 @@ const app = {
             })
             let closeI = document.createElement('i')
             closeI.className = "far fa-window-close"
-            closeI.addEventListener('click',()=>{
+            closeI.addEventListener('click', () => {
                 document.getElementById('addNewCat').classList.add('hide')
                 span.classList.remove('hide')
             })
@@ -91,6 +111,8 @@ const app = {
             document.querySelector('#editWindow input').value = editCat.getAttribute("data-id")
             document.querySelector('#editWindow input').focus()
             document.querySelector('#editWindow .fa-check-circle').setAttribute('data-id', editCat.getAttribute("data-id"))
+            app.i = 1
+            app.addPress()
         })
         let trash = document.createElement('i')
         trash.className = "far fa-trash-alt"
@@ -105,7 +127,7 @@ const app = {
 
         let sub = document.createElement('ul')
         sub.className = "sub " + category
-        if(item.length != 0) {
+        if (item.length != 0) {
             item.forEach(i => {
                 let title = document.createElement('li')
                 title.textContent = i;
@@ -114,25 +136,26 @@ const app = {
         }
         let addItem = document.createElement('i')
         addItem.className = "far fa-plus-square"
-        addItem.addEventListener('click',()=>{
+        addItem.addEventListener('click', () => {
             document.getElementById(`add${category}`).classList.remove('hide')
             addItem.classList.add('hide')
-            console.log(category)
             document.querySelector(`#add${category} input`).focus()
+            app.i = 2
+            app.cat = category
+            app.addPress()
         })
         sub.appendChild(addItem)
 
         let addDiv = document.createElement('form')
         addDiv.className = "hide"
-        addDiv.setAttribute('id',`add${category}`)
+        addDiv.setAttribute('id', `add${category}`)
         let input = document.createElement('input')
         input.setAttribute("type", "text")
 
         let checkI = document.createElement('i')
         checkI.className = "far fa-check-circle"
-        checkI.addEventListener('click',()=>{
-            console.log(document.querySelector(`#add${category} input`).value)
-            if(document.querySelector(`#add${category} input`).value == "" || document.querySelector(`#add${category} input`).value.trim() == ""){
+        checkI.addEventListener('click', () => {
+            if (document.querySelector(`#add${category} input`).value == "" || document.querySelector(`#add${category} input`).value.trim() == "") {
                 alert('It can not be empty')
                 document.querySelector(`#add${category} input`).focus()
                 return
@@ -142,7 +165,7 @@ const app = {
 
         let closeI = document.createElement('i')
         closeI.className = "far fa-window-close"
-        closeI.addEventListener('click',()=>{
+        closeI.addEventListener('click', () => {
             document.getElementById(`add${category}`).classList.add('hide')
             addItem.classList.remove('hide')
         })
@@ -167,16 +190,18 @@ const app = {
                     });
                 }
             });
-        } else if (ops == "addItem"){
-            app.db.collection("snack").doc(id).get().then((doc)=>{
+        } else if (ops == "addItem") {
+            app.db.collection("snack").doc(id).get().then((doc) => {
                 app.db.collection("snack").doc(id).set({
                     items: [...doc.data().items, document.querySelector(`#add${id} input`).value]
                 })
             })
             document.getElementById(`add${id}`).classList.add('hide')
             document.querySelector(`.${id} .fa-plus-square`).classList.remove('hide')
-        } else if (ops == "addCat"){
-            app.db.collection("snack").doc(id).set({items:[]})
+        } else if (ops == "addCat") {
+            app.db.collection("snack").doc(id).set({
+                items: []
+            })
         }
     },
     deletCat(id) {
