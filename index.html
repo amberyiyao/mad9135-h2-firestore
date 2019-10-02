@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="./css/main.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <title>Firebase Firestore App</title>
 </head>
 
@@ -14,35 +15,69 @@
     <main>
         <ul class="categories">
             <li>
-                <p>Chocolate</p>
+                <div>
+                    <p>Chocolate</p>
+                    <i class="fas fa-edit"></i>
+                    <i class="far fa-trash-alt"></i>
+                </div>
                 <ul class="sub">
                     <li>Ferrero Rocher</li>
                     <li>Lindt & Sprüngli</li>
                     <li>Toblerone</li>
+                    <i class="far fa-plus-square"></i>
+                    <div class="hide">
+                        <input type="text">
+                        <i class="far fa-check-circle"></i>
+                        <i class="far fa-window-close"></i>
+                    </div>
                 </ul>
             </li>
             <li>
-                <p>Cookies</p>
+                <div>
+                    <p>Cookies</p>
+                    <i class="fas fa-edit"></i>
+                    <i class="far fa-trash-alt"></i>
+                </div>
                 <ul class="sub">
                     <li>Oreo</li>
                     <li>Chips Ahoy</li>
                     <li>Nestlé</li>
+                    <i class="far fa-plus-square"></i>
+                    <div class="hide">
+                        <input type="text">
+                        <i class="far fa-check-circle"></i>
+                        <i class="far fa-window-close"></i>
+                    </div>
                 </ul>
             </li>
             <li>
-                <p>Coffee</p>
+                <div>
+                    <p>Coffee</p>
+                    <i class="fas fa-edit"></i>
+                    <i class="far fa-trash-alt"></i>
+                </div>
                 <ul class="sub">
                     <li>Starbucks</li>
                     <li>Maxwell House</li>
                     <li>Tim Hortons</li>
+                    <i class="far fa-plus-square"></i>
+                    <div class="hide">
+                        <input type="text">
+                        <i class="far fa-check-circle"></i>
+                        <i class="far fa-window-close"></i>
+                    </div>
                 </ul>
             </li>
+            <span><i class="far fa-plus-square add-cat"></i>Add New Categorie</span>
+            <div class="hide">
+                <input type="text">
+                <i class="far fa-check-circle"></i>
+                <i class="far fa-window-close"></i>
+            </div>
         </ul>
-        <section id="results">
-        </section>
     </main>
-  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
 
     <script>
         // Your web app's Firebase configuration
