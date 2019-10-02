@@ -38,7 +38,7 @@ main{
     width: 90%;
 }
 
-.categories div{
+.categories form{
     display: flex;
     align-items: center;
 }

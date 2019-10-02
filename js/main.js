@@ -5,6 +5,11 @@ const app = {
     },
     addListeners() {
         document.querySelector('#editWindow .fa-check-circle').addEventListener('click', () => {
+            if(document.querySelector(`#editWindow input`).value || document.querySelector(`#editWindow input`).value.trim() != ""){
+                alert('It can not be emply')
+                document.querySelector(`#editWindow input`).focus()
+                return
+            }
             let id = document.querySelector('#editWindow .fa-check-circle').getAttribute('data-id')
             let newId = document.querySelector('#editWindow input').value
             app.editInfor(id, "changeCat", newId)
@@ -37,7 +42,7 @@ const app = {
             spanSub.textContent = "Add New Categorie"
             span.appendChild(addItem)
             span.appendChild(spanSub)
-            let addCat = document.createElement('div')
+            let addCat = document.createElement('form')
             addCat.className = "hide"
             addCat.setAttribute('id',"addNewCat")
             let input = document.createElement('input')
@@ -45,6 +50,11 @@ const app = {
             let checkI = document.createElement('i')
             checkI.className = "far fa-check-circle"
             checkI.addEventListener('click',()=>{
+                if(document.querySelector(`#addNewCat input`).value || document.querySelector(`#addNewCat input`).value.trim() != ""){
+                    alert('It can not be emply')
+                    document.querySelector(`#addNewCat input`).focus()
+                    return
+                }
                 let newCat = document.querySelector('#addNewCat input').value
                 app.editInfor(newCat, "addCat")
                 document.getElementById('addNewCat').classList.add('hide')
@@ -69,7 +79,7 @@ const app = {
     },
     createList(category, item) {
         let listAll = document.createElement('li')
-        let divCat = document.createElement('div')
+        let divCat = document.createElement('form')
         let cat = document.createElement('p')
         cat.textContent = category
 
@@ -111,7 +121,7 @@ const app = {
         })
         sub.appendChild(addItem)
 
-        let addDiv = document.createElement('div')
+        let addDiv = document.createElement('form')
         addDiv.className = "hide"
         addDiv.setAttribute('id',`add${category}`)
         let input = document.createElement('input')
@@ -120,6 +130,11 @@ const app = {
         let checkI = document.createElement('i')
         checkI.className = "far fa-check-circle"
         checkI.addEventListener('click',()=>{
+            if(document.querySelector(`#add${category} input`).value || document.querySelector(`#add${category} input`).value.trim() != ""){
+                alert('It can not be emply')
+                document.querySelector(`#add${category} input`).focus()
+                return
+            }
             app.editInfor(category, "addItem")
         })
 
@@ -148,10 +163,8 @@ const app = {
             });
         } else if (ops == "addItem"){
             app.db.collection("snack").doc(id).get().then((doc)=>{
-                let array = doc.data().items
-                array.push(document.querySelector(`#add${id} input`).value)
                 app.db.collection("snack").doc(id).set({
-                    items: array
+                    items: [document.querySelector(`#add${id} input`).value,...doc.data().items]
                 })
             })
             document.getElementById(`add${id}`).classList.add('hide')
@@ -165,4 +178,4 @@ const app = {
     }
 }
 
-app.init()
+document.addEventListener("DOMContantLoaded", app.init());
