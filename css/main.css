@@ -96,6 +96,54 @@ span:hover{
     border-bottom: 2px solid rgb(190, 200, 70)
 }
 
+#editWindow{
+    width: 20rem;
+    height: 10rem;
+    position: absolute;
+    top: calc((100vh - 15rem)/2);
+    left: calc((100vw - 20rem)/2);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 2px 2px 2px rgba(143, 143, 143, 0.521);
+}
+
+#editWindow p {
+    padding: 0.5rem 0;
+    background-color: rgb(190, 200, 70);
+    margin: 0;
+    text-align: center;
+    color: white;
+    font-weight: 700
+}
+
+#editWindow input{
+    width: 80%;
+    margin: 0 auto;
+}
+
+#editWindow div{
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+
+#editWindow i {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+#editWindow i:nth-child(1){
+    color: rgb(190, 200, 70)
+}
+
+#editWindow i:nth-child(2):hover{
+    color: rgb(200, 70, 70)
+}
 
 /***********       functions       **********/
 

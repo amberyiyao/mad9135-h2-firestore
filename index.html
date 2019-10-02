@@ -68,13 +68,21 @@
                     </div>
                 </ul>
             </li>
-            <span><i class="far fa-plus-square add-cat"></i>Add New Categorie</span>
+            <span><i class="far fa-plus-square add-cat"></i><span></span></span>
             <div class="hide">
                 <input type="text">
                 <i class="far fa-check-circle"></i>
                 <i class="far fa-window-close"></i>
             </div>
         </ul>
+        <div id="editWindow" class="hide">
+            <p>Edit Category</p>
+            <input type="text">
+            <div>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-times-circle"></i>
+            </div>
+        </div>
     </main>
     <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
