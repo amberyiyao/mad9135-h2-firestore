@@ -1,20 +1,3 @@
-// var db = firebase.firestore()
-// var snackRef = db.collection("snack")
-
-
-// snackRef.doc("chocolate").set({
-//     items: ["Ferrero Rocher", "Lindt & Sprüngli", "Toblerone"]
-// })
-
-// snackRef.doc("cookies").set({
-//     items: ["Oreo", "Chips Ahoy", "Nestlé"]
-// })
-
-// snackRef.doc("coffee").set({
-//     items: ["Starbucks", "Maxwell House", "Tim Hortons"]
-// })
-
-
 const app = {
     init() {
         app.addListeners()
@@ -29,6 +12,7 @@ const app = {
         });
         document.querySelector('#editWindow .fa-times-circle').addEventListener('click', () => {
             document.getElementById('editWindow').classList.add('hide')
+            document.getElementById('addNewCat').classList.remove('hide')
         });
     },
     db: firebase.firestore(),
@@ -43,7 +27,8 @@ const app = {
 
             let span = document.createElement('span')
             span.addEventListener('click',()=>{
-                
+                document.getElementById('addNewCat').classList.remove('hide')
+                span.classList.add('hide')
             })
 
             let addItem = document.createElement('i')
@@ -54,12 +39,23 @@ const app = {
             span.appendChild(spanSub)
             let addCat = document.createElement('div')
             addCat.className = "hide"
+            addCat.setAttribute('id',"addNewCat")
             let input = document.createElement('input')
             input.setAttribute("type", "text")
             let checkI = document.createElement('i')
             checkI.className = "far fa-check-circle"
+            checkI.addEventListener('click',()=>{
+                let newCat = document.querySelector('#addNewCat input').value
+                app.editInfor(newCat, "addCat")
+                document.getElementById('addNewCat').classList.add('hide')
+                span.classList.remove('hide')
+            })
             let closeI = document.createElement('i')
             closeI.className = "far fa-window-close"
+            closeI.addEventListener('click',()=>{
+                document.getElementById('addNewCat').classList.add('hide')
+                span.classList.remove('hide')
+            })
 
             addCat.appendChild(input)
             addCat.appendChild(checkI)
@@ -99,11 +95,13 @@ const app = {
 
         let sub = document.createElement('ul')
         sub.className = "sub " + category
-        item.forEach(i => {
-            let title = document.createElement('li')
-            title.textContent = i;
-            sub.appendChild(title)
-        })
+        if(item.length != 0) {
+            item.forEach(i => {
+                let title = document.createElement('li')
+                title.textContent = i;
+                sub.appendChild(title)
+            })
+        }
         let addItem = document.createElement('i')
         addItem.className = "far fa-plus-square"
         addItem.addEventListener('click',()=>{
@@ -158,6 +156,8 @@ const app = {
             })
             document.getElementById(`add${id}`).classList.add('hide')
             document.querySelector(`.id .fa-plus-square`).classList.remove('hide')
+        } else if (ops == "addCat"){
+            app.db.collection("snack").doc(id).set({items:[]})
         }
     },
     deletCat(id) {
