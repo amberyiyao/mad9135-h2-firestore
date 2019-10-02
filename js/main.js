@@ -117,6 +117,7 @@ const app = {
         addItem.addEventListener('click',()=>{
             document.getElementById(`add${category}`).classList.remove('hide')
             addItem.classList.add('hide')
+            console.log(category)
             document.querySelector(`#add${category} input`).focus()
         })
         sub.appendChild(addItem)
@@ -141,6 +142,10 @@ const app = {
 
         let closeI = document.createElement('i')
         closeI.className = "far fa-window-close"
+        closeI.addEventListener('click',()=>{
+            document.getElementById(`add${category}`).classList.add('hide')
+            addItem.classList.remove('hide')
+        })
 
         addDiv.appendChild(input)
         addDiv.appendChild(checkI)
